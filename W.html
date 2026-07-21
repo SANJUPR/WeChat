@@ -582,7 +582,7 @@
 
   // ===== HELPERS =====
   function getAvatarColor(u) { if (!u) return '#2f4b7a'; if (u===ADMIN_USERNAME) return '#ffd700'; if(!userColorMap[u]){const c=['#00a884','#4fc3f7','#ffb74d','#81c784','#ff8a65','#ce93d8','#4dd0e1','#ffd54f'];userColorMap[u]=c[Object.keys(userColorMap).length%c.length];}return userColorMap[u]; }
-  function getAvatar(u) { if(!u)return '👤'; if(u===ADMIN_USERNAME)return '👑'; return u.charAt(0).toUpperCase(); }
+  function getAvatar(u) { if(!u)return '👤'; if(u===ADMIN_USERNAME)return ''; return u.charAt(0).toUpperCase(); }
   function getTime(ts){ if(!ts)return ''; const d=ts.toDate?ts.toDate():new Date(ts); return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
   function formatDate(ts){ if(!ts)return ''; const d=ts.toDate?ts.toDate():new Date(ts); const t=new Date(); if(d.toDateString()===t.toDateString())return 'Today'; const y=new Date(t);y.setDate(y.getDate()-1); if(d.toDateString()===y.toDateString())return 'Yesterday'; return d.toLocaleDateString([],{month:'short',day:'numeric'}); }
   function escapeHtml(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
@@ -686,7 +686,7 @@
       mentionList.innerHTML='<div class="mention-header">👥 Mention a user</div>';
       const div=document.createElement('div'); 
       div.className='mention-item'; 
-      div.innerHTML=`<span class="mention-avatar" style="background:#ffd700">👑</span><span class="mention-name">${ADMIN_USERNAME} 👑</span><span class="mention-badge">@</span>`; 
+      div.innerHTML=`<span class="mention-avatar" style="background:#ffd700"></span><span class="mention-name">${ADMIN_USERNAME} </span><span class="mention-badge">@</span>`; 
       div.onclick=(e)=>{e.stopPropagation();const cursor=msgInput.selectionStart,text=msgInput.value;let at=cursor-1;while(at>=0 && text[at]!=='@')at--;if(at<0)at=cursor;msgInput.value=text.substring(0,at)+'@'+ADMIN_USERNAME+' '+text.substring(cursor);mentionList.classList.add('hidden');mentionList.innerHTML='';msgInput.focus();}; 
       mentionList.appendChild(div);
       mentionList.classList.remove('hidden');
