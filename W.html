@@ -485,7 +485,7 @@
       <div><div class="section-title">👤 Members</div><div class="user-list-modal" id="modalUserList" style="max-height:160px;overflow-y:auto;background:#111b26;border-radius:10px;padding:4px;border:1px solid #2f3d52;"><div style="color:#8696a0;text-align:center;padding:12px;">Loading...</div></div></div>
       
       <div id="adminSection" style="display:none;">
-        <div class="section-title">🔧 Admin</div>
+        <div class="section-title">🔧 SANJU</div>
         <div class="form-row"><input type="text" id="newUser" placeholder="Username" /><input type="password" id="newPass" placeholder="Password" /></div>
         <button class="btn-primary" id="addUserBtn" style="width:100%;margin-top:4px;">➕ Add User</button>
         <button class="btn-danger" id="clearChatBtn" style="width:100%;margin-top:4px;">🗑️ Clear Chat</button>
@@ -593,7 +593,7 @@
   function checkSession(){ const s=localStorage.getItem('clouduat_session'); if(s){ const d=JSON.parse(s); if(d.username && Date.now()-d.timestamp<86400000){ currentUser=d.username; isAdmin=(currentUser===ADMIN_USERNAME); loginOverlay.classList.add('hidden'); enableChat(true); startListening(); updateUserBadge(); if(isAdmin){db.collection('status').doc(currentUser).set({online:true,lastSeen:firebase.firestore.FieldValue.serverTimestamp()});} showNotification('System','👋 Welcome back!'); return true;}} return false; }
   function saveSession(u){localStorage.setItem('clouduat_session',JSON.stringify({username:u,timestamp:Date.now()}));}
   function clearSession(){localStorage.removeItem('clouduat_session');}
-  function updateUserBadge(){if(currentUser)currentUserDisplay.textContent=currentUser===ADMIN_USERNAME?'Admin':currentUser;}
+  function updateUserBadge(){if(currentUser)currentUserDisplay.textContent=currentUser===ADMIN_USERNAME?'SANJU':currentUser;}
 
   // ===== NOTIFICATION =====
   function showNotification(sender, msg){ notifSender.textContent=sender; notifMessage.textContent=msg.length>60?msg.substring(0,60)+'...':msg; notifIcon.textContent=sender===ADMIN_USERNAME||sender==='System'?'👑':'💬'; notificationPopup.classList.add('show'); clearTimeout(window.notifTimeout); window.notifTimeout=setTimeout(()=>notificationPopup.classList.remove('show'),5000); }
